@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <!-- 마리아 디비 -->
+    <Resource name="jdbc/camaDB"
+        auth="container"
+        type="javax.sql.DataSource"
+        driverClassName="org.mariadb.jdbc.Driver"
+        loginTimeout="10"
+        maxWait="5000"
+        username="cama"
+        password="cam1pwd"
+        testOnBorrow="true"
+        url="jdbc:mariadb://localhost:3306/camaDB" />
+</Context>
