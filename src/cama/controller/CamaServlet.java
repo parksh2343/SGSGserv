@@ -1,9 +1,9 @@
 package cama.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +35,8 @@ public class CamaServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		
+		PrintWriter out = response.getWriter();
+		
 		//String location = request.getParameter("personId");
 		ArrayList<CamaDto> camaList = new ArrayList<CamaDto>();
 		CamaBiz biz = new CamaBiz();
@@ -42,9 +44,25 @@ public class CamaServlet extends HttpServlet {
 		if(camaList != null) {
 			request.setAttribute( "CamaTestList" , camaList);
 //			request.setAttribute( "CamaDto" , camaList.get(0));
-			RequestDispatcher rd = request.getRequestDispatcher("sample.jsp");
-			rd.forward(request, response);
+			//RequestDispatcher rd = request.getRequestDispatcher("sample.jsp");
+			//rd.forward(request, response);
+			
+			ArrayList<CamaDto> al = (ArrayList<CamaDto>)request.getAttribute("CamaTestList"); 
+			CamaDto dto;
+			
+			out.print("<br/>");
+			for(int i = 0 ; i < al.size() ; i++) {
+				dto = al.get(i);
+				out.print("<br/>");
+				out.print(dto.getAge());
+				out.print("<br/>");
+				out.print(dto.getName());
+				out.print("<br/>");
+				out.print(dto.getPersonId());
+				out.print("<br/>");
+			}
 		}
+			
 	}
 
 	/**
@@ -55,17 +73,34 @@ public class CamaServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		
+		PrintWriter out = response.getWriter();
+		
 		//String location = request.getParameter("personId");
 		ArrayList<CamaDto> camaList = new ArrayList<CamaDto>();
 		CamaBiz biz = new CamaBiz();
 		camaList = biz.getTestList("");//pama = personId
 		if(camaList != null) {
 			request.setAttribute( "CamaTestList" , camaList);
-			RequestDispatcher rd = request.getRequestDispatcher("sample.jsp");
-			rd.forward(request, response);
+//					request.setAttribute( "CamaDto" , camaList.get(0));
+			//RequestDispatcher rd = request.getRequestDispatcher("sample.jsp");
+			//rd.forward(request, response);
+			
+			ArrayList<CamaDto> al = (ArrayList<CamaDto>)request.getAttribute("CamaTestList"); 
+			CamaDto dto;
+			
+			out.print("<br/>");
+			for(int i = 0 ; i < al.size() ; i++) {
+				dto = al.get(i);
+				out.print("<br/>");
+				out.print(dto.getAge());
+				out.print("<br/>");
+				out.print(dto.getName());
+				out.print("<br/>");
+				out.print(dto.getPersonId());
+				out.print("<br/>");
+			}
 		}
-		
-		
+			
 	}
 
 }
